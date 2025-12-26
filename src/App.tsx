@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { AppNavbar } from './components/AppNavbar'
 import { CalendarPage } from './pages/CalendarPage'
 import { HomePage } from './pages/HomePage'
+import GalleryPage from './pages/GalleryPage'
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/calendario" element={<CalendarPage />} />
+        <Route path="/galeria" element={<GalleryPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

@@ -26,10 +26,6 @@ export function HomePage() {
                   Nosso estilo de moto é, em sua maioria, custom: Harley-Davidson, Royal Enfield, Triumph e Suzuki —
                   mas o que manda mesmo é a parceria. Se encaixa no rolê quem curte estrada, amizade e boas paisagens.
                 </p>
-
-                <div className="homeAboutFooter">
-                  Cavalos de Aço MG • RS — Região Metropolitana de Porto Alegre
-                </div>
               </div>
 
               <div className="homeAboutMedia">
