@@ -1,0 +1,389 @@
+:root {
+  --bg0: #07090d;
+  --bg1: #0c1018;
+  --card: rgba(255, 255, 255, 0.06);
+  --stroke: rgba(255, 255, 255, 0.10);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.64);
+  --muted2: rgba(255, 255, 255, 0.48);
+  --red: #e1162f;
+  --red2: #ff2d55;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.appShell {
+  min-height: 100%;
+  color: var(--text);
+  background: radial-gradient(900px 500px at 20% -10%, rgba(255, 45, 85, 0.16), transparent 60%),
+    radial-gradient(800px 500px at 90% 10%, rgba(225, 22, 47, 0.14), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+}
+
+.appNavbar {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background: rgba(8, 10, 14, 0.76);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--stroke);
+}
+
+.appNavbar .navbar-brand {
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.appNavbar .nav-link {
+  color: rgba(255, 255, 255, 0.80);
+}
+
+.appNavbar .nav-link.active {
+  color: white;
+}
+
+.topBar {
+  z-index: 5;
+  background: rgba(8, 10, 14, 0.72);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--stroke);
+}
+
+.topBarTop {
+  position: sticky;
+  top: 0;
+}
+
+.topBarBottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top: 1px solid var(--stroke);
+  border-bottom: none;
+}
+
+.topBarCenter {
+  text-align: center;
+  flex: 1;
+}
+
+.topBarTitle {
+  font-weight: 800;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+}
+
+.topBarSubtitle {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.brandMark {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.pageWithBottomBar {
+  min-height: 100%;
+}
+
+.pb-bottomBar {
+  padding-bottom: 78px !important;
+}
+
+.glassCard {
+  background: var(--card) !important;
+  border: 1px solid var(--stroke) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--shadow);
+}
+
+.heroKicker {
+  font-weight: 900;
+  color: rgba(255, 45, 85, 0.88);
+  letter-spacing: 0.4px;
+}
+
+.heroTitle {
+  margin-top: 8px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.heroTitleWhite {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.heroText {
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+.heroTextWhite {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.sectionTitle {
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.photoPlaceholder {
+  margin-top: 12px;
+  border-radius: 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.18);
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.photoPlaceholderInner {
+  max-width: 420px;
+  text-align: center;
+  color: var(--muted2);
+}
+
+.homePhoto {
+  width: 100%;
+  height: 307px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.40);
+}
+
+.homeAboutFooter {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.70);
+  letter-spacing: 0.3px;
+}
+
+.homeAbout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+.homeAboutText {
+  min-width: 0;
+}
+
+.homeAboutText .heroTitle {
+  margin-top: 0;
+}
+
+.homeAboutText .heroText {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+@media (max-width: 991px) {
+  .homeAboutText .heroText {
+    font-size: 15px;
+  }
+
+  .homePhoto {
+    height: 230px;
+  }
+}
+
+.calendarCard {
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+
+.weekdayRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  padding: 0 4px 10px;
+}
+
+.weekdayCell {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: capitalize;
+}
+
+.monthGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.dayCell {
+  text-align: left;
+  padding: 10px 10px 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  min-height: 66px;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.dayCell:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.dayCell.outMonth {
+  opacity: 0.45;
+}
+
+.dayCellTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.dayNumber {
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.badgeSpacer {
+  width: 26px;
+  height: 18px;
+}
+
+.dots {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.dayCell.selected {
+  border-color: rgba(255, 45, 85, 0.55);
+  background: linear-gradient(180deg, rgba(255, 45, 85, 0.28), rgba(255, 45, 85, 0.10));
+}
+
+.dayCell.selected .dot {
+  background: rgba(255, 255, 255, 0.80);
+}
+
+.dayCell.today {
+  outline: 2px solid rgba(255, 45, 85, 0.50);
+  outline-offset: 1px;
+}
+
+.calendarFooterHint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+.agendaCard {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid var(--stroke) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.agendaHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.agendaTitle {
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.agendaSubtitle {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: capitalize;
+}
+
+.agendaEmpty {
+  padding: 18px;
+  color: var(--muted);
+}
+
+.agendaItem {
+  background: rgba(0, 0, 0, 0.10) !important;
+  color: var(--text) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.agendaItemMain {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.agendaTime {
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.agendaInfo {
+  min-width: 0;
+}
+
+.agendaEventTitle {
+  font-weight: 800;
+}
+
+.agendaAddress {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.agendaActions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.jsonHint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+.smallText {
+  color: var(--muted);
+}
+
+/* Better compact mode on very small screens */
+@media (max-width: 420px) {
+  .monthGrid {
+    gap: 8px;
+  }
+  .weekdayRow {
+    gap: 8px;
+  }
+  .dayCell {
+    min-height: 58px;
+    padding: 9px;
+  }
+}
