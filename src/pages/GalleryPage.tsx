@@ -1,58 +1,104 @@
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import { useMemo, useState } from 'react'
+import { Accordion, Col, Container, Modal, Row } from 'react-bootstrap'
+import { GALLERY_ENTRIES, type GalleryGeneratedEntry, type GalleryGeneratedPhoto } from '../data/gallery.generated'
 
-const PHOTOS: Array<{ src?: string; title: string; caption: string }> = [
-  {
-    title: 'Role com a família',
-    caption: 'Momentos na estrada e na resenha.',
-  },
-  {
-    title: 'Cavalos de Aço MG',
-    caption: 'União, respeito e parceria.',
-  },
-  {
-    title: 'Paisagens do RS',
-    caption: 'Por do sol, serra e bons destinos.',
-  },
-]
+type OpenState = { entry: GalleryGeneratedEntry; photo: GalleryGeneratedPhoto } | null
 
 export default function GalleryPage() {
+  const [open, setOpen] = useState<OpenState>(null)
+
+  const baseUrl = import.meta.env.BASE_URL
+
+  const entries = useMemo(() => {
+    return GALLERY_ENTRIES
+  }, [])
+
+  const resolveSrc = (src: string) => {
+    // Se for URL absoluta, usa direto
+    if (/^https?:\/\//i.test(src)) return src
+    // Se for relativo, prefixa com BASE_URL (resolve deploy em subpath tipo /Calendario-mg/)
+    const clean = src.replace(/^\/+/, '')
+    return `${baseUrl}${clean}`
+  }
+
   return (
     <Container className="py-4">
-      <Card className="homeCard">
-        <Card.Body>
-          <Card.Title className="text-white">Galeria</Card.Title>
-          <Card.Text className="text-white-50">
-            Em breve vamos publicar aqui as fotos dos nossos rolês e encontros.
-          </Card.Text>
+      <div className="calendarCard">
+        <div className="p-3">
+          <div className="agendaTitle text-white">Galeria</div>
+          <div className="text-white-50" style={{ marginTop: 6, fontSize: 13 }}>
+            Organize por data e local, com miniaturas que abrem em tela cheia.
+          </div>
 
-          <Row className="g-3 mt-2">
-            {PHOTOS.map((p) => (
-              <Col key={p.title} xs={12} md={4}>
-                <Card className="bg-dark border border-danger h-100">
-                  <div
-                    style={{
-                      height: 180,
-                      background:
-                        'linear-gradient(135deg, rgba(220,53,69,0.35), rgba(13,13,13,1))',
-                      borderBottom: '1px solid rgba(220,53,69,0.35)',
-                    }}
-                    aria-label={p.title}
-                    title={p.title}
-                  />
-                  <Card.Body>
-                    <Card.Title className="text-white" style={{ fontSize: '1rem' }}>
-                      {p.title}
-                    </Card.Title>
-                    <Card.Text className="text-white-50" style={{ fontSize: '0.9rem' }}>
-                      {p.caption}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Card.Body>
-      </Card>
+          <div style={{ marginTop: 12 }}>
+            <Accordion defaultActiveKey="0" alwaysOpen className="galleryAccordion">
+              {entries.length === 0 ? (
+                <div className="text-white-50" style={{ padding: 12 }}>
+                  Nenhuma pasta encontrada em <code>public/galeria</code>.
+                  <br />
+                  Crie uma pasta tipo <b>"Candelaria - 20-12-2025"</b> e coloque as fotos dentro.
+                </div>
+              ) : null}
+
+              {entries.map((e, idx) => (
+              <Accordion.Item eventKey={String(idx)} key={e.id}>
+                <Accordion.Header>
+                  {e.date ? new Date(`${e.date}T00:00:00`).toLocaleDateString('pt-BR') : 'Sem data'} — {e.place}
+                </Accordion.Header>
+                <Accordion.Body>
+                  <Row className="g-3">
+                    {e.photos.map((p) => (
+                      <Col key={p.id} xs={6} sm={4} md={3} lg={2}>
+                        <button
+                          type="button"
+                          className="galleryThumb"
+                          onClick={() => setOpen({ entry: e, photo: p })}
+                          title={p.title}
+                        >
+                          <img src={resolveSrc(p.src)} alt={p.title} loading="lazy" />
+                        </button>
+                      </Col>
+                    ))}
+                  </Row>
+                </Accordion.Body>
+              </Accordion.Item>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      <Modal
+        show={!!open}
+        onHide={() => setOpen(null)}
+        centered
+        size="lg"
+        contentClassName="bg-dark text-white"
+      >
+        <Modal.Header closeButton closeVariant="white">
+          <Modal.Title style={{ fontSize: '1rem' }}>
+            {open
+              ? `${open.entry.date ? new Date(`${open.entry.date}T00:00:00`).toLocaleDateString('pt-BR') : 'Sem data'} — ${open.entry.place}`
+              : ''}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {open ? (
+            <>
+              <div className="d-flex justify-content-center">
+                <img
+                  src={resolveSrc(open.photo.src)}
+                  alt={open.photo.title}
+                  style={{ maxWidth: '100%', maxHeight: '70vh', objectFit: 'contain' }}
+                />
+              </div>
+              <div className="text-white-50 mt-3" style={{ fontSize: '0.95rem' }}>
+                {open.photo.title}
+              </div>
+            </>
+          ) : null}
+        </Modal.Body>
+      </Modal>
     </Container>
   )
 }

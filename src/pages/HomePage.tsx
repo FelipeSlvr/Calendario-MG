@@ -29,7 +29,12 @@ export function HomePage() {
               </div>
 
               <div className="homeAboutMedia">
-                <img className="homePhoto" src="nos.jpeg" alt="Cavalos de Aço MG" loading="lazy" />
+                <img
+                  className="homePhoto"
+                  src={`${import.meta.env.BASE_URL}nos.jpeg`}
+                  alt="Cavalos de Aço MG"
+                  loading="lazy"
+                />
               </div>
             </Card.Body>
           </Card>

@@ -51,6 +51,67 @@
   border-radius: 999px;
 }
 
+.galleryThumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 0;
+  border: 1px solid rgba(220, 53, 69, 0.35);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.galleryThumb img {
+  width: 100%;
+  height: 96px;
+  object-fit: cover;
+  display: block;
+}
+
+.galleryThumb:hover {
+  transform: translateY(-1px);
+  border-color: rgba(220, 53, 69, 0.6);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.galleryThumb:focus-visible {
+  outline: 2px solid rgba(220, 53, 69, 0.7);
+  outline-offset: 2px;
+}
+
+/* Galeria (Accordion) no tema dark/vermelho */
+.galleryAccordion .accordion-item {
+  background: rgba(20, 20, 20, 0.65);
+  border: 1px solid rgba(220, 53, 69, 0.25);
+}
+
+.galleryAccordion .accordion-item + .accordion-item {
+  margin-top: 10px;
+}
+
+.galleryAccordion .accordion-button {
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
+
+.galleryAccordion .accordion-button::after {
+  filter: invert(1);
+}
+
+.galleryAccordion .accordion-button:not(.collapsed) {
+  background: rgba(220, 53, 69, 0.14);
+  color: #fff;
+  box-shadow: none;
+}
+
+.galleryAccordion .accordion-body {
+  background: rgba(0, 0, 0, 0.15);
+  color: rgba(255, 255, 255, 0.75);
+}
+
 @media (max-width: 420px) {
   .navLogo {
     height: 46px;
